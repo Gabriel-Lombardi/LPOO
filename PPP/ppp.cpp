@@ -4,16 +4,18 @@
 #include <unistd.h>
 #include <time.h>
 
+
 int main(void) {
     srand(time(NULL));
-    int eleccion;
-    int rondasJugador = 0;
-    int rondasMaquina = 0;
-    int totalJugador  = 0;
-    int totalMaquina  = 0;
-    bool ganadorRonda = false;
-    bool ganador      = false;
-    const char *ppp[] = {"Piedra","Papel","Tijera"};
+    int  eleccion;
+    int  rondasJugador = 0;
+    int  rondasMaquina = 0;
+    int  totalJugador  = 0;
+    int  totalMaquina  = 0;
+    int  ganador       = 0;
+    bool ganadorRonda  = false;
+    const char *ppp[]  = {"Piedra","Papel","Tijera"};
+
 
     system("cls");
     printf("PIEDRA, PAPEL O TIJERA!!!\n");
@@ -25,14 +27,17 @@ int main(void) {
     printf("\nEmpecemos!\n");
     sleep(1);
 
+
     for (int i = 0; i < 5; i++) {
         printf("\nRONDA %d\n\n", i+1);
         totalJugador = 0;
         totalMaquina = 0;
 
+
         for (int j = 0; j < 3; j++) {
             int maquina = rand() % 3 + 1;
             int jugador;
+
 
             eleccion:
             printf("Ingrese 1 (piedra), 2 (papel) o 3 (tijera): ");
@@ -44,11 +49,11 @@ int main(void) {
                 goto eleccion;
             }
 
+
             sleep(1);
 
             printf("Jugador: %s!\n\n", ppp[jugador-1]);
             printf("Maquina: %s!\n\n", ppp[maquina-1]);
-
 
             if (jugador == maquina) {
                 printf("Empate!!\n\n");
@@ -83,7 +88,7 @@ int main(void) {
         }
 
         printf("---------------------\n\n");
-        if (ganadorRonda == true) printf("Ganaste la ronda! +1\n\n");
+        if (ganadorRonda == true)  printf("Ganaste la ronda! +1\n\n");
         if (ganadorRonda == false) printf("La maquina ha ganado la ronda! +1 (maquina)\n\n");
 
         printf("Jugador  |   Maquina\n");
@@ -92,31 +97,36 @@ int main(void) {
         printf(" \t |\n\n");
 
         if (rondasJugador == 3) {
-            ganador = true;
+            ganador = 1;
             i++;
         }
 
         if (rondasMaquina == 3) {
+            ganador = 2;
             i++;
         }
-        
+
         printf("\n");
     }
+   
+    printf("%d %d", rondasJugador, rondasMaquina);
     
-    if (ganador == true) {
-        for (int k = 0; k > 3; k++) {
+    printf("%d %d", rondasJugador, rondasMaquina);
+
+    if (ganador == 1) {
+        for (int i = 0; i < 3; i++) {
             system("cls");
             printf("Usted ha ganado el torneo!\n");
             sleep(2);
         }
     }
-
-    else if (ganador == false) {
-        for (int k = 0; k > 3; k++) {
+    else if (ganador == 2) {
+        for (int i = 0; i < 3; i++) {
             system("cls");
+            sleep(1);
             printf("La maquina ha ganado el torneo!\n");
             sleep(1);
-        }            
+        }
     }
 
     return 0;
